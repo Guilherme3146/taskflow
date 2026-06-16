@@ -3,6 +3,8 @@ import LoginPage from "./pages/LoginPage";
 import { AuthProvider } from "./hooks/AuthProvider";
 import { useAuth } from "./hooks/useAuth";
 
+import { Toaster } from "sonner";
+
 import TasksPage from "./pages/TasksPage";
 
 const ProtectedRoute = ({ children }) => {
@@ -14,6 +16,7 @@ const ProtectedRoute = ({ children }) => {
 const App = () => {
   return (
     <AuthProvider>
+      <Toaster toastOptions={{ style: { color: "#35383e" } }} />
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
