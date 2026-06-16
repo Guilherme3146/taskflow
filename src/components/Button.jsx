@@ -15,6 +15,9 @@ const Button = ({
     if (variant == "secondary") {
       return "bg-[#EEEEEE] text-[#35383E]";
     }
+    if (variant == "danger") {
+      return "bg-red-500 text-white";
+    }
   };
 
   const getSizeClasses = () => {
