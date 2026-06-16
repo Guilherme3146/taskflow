@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { LogoutIcon } from "../assets/icons";
-
-import { Button } from "../components/";
+import Button from "./Button";
+import ConfirmDialog from "./ConfirmDialog";
 
 const Sidebar = () => {
   const { user, logout } = useAuth();
+  const [logoutDialogIsOpen, setLogoutDialogIsOpen] = useState(false);
+
   return (
     <div className="h-screen w-72 bg-white flex flex-col justify-between">
       <div className="space-y-4 px-8 py-6">
@@ -13,15 +16,23 @@ const Sidebar = () => {
           Um simples{" "}
           <span className="text-[#00adb5]">organizador de tarefas</span>.
         </p>
-        <h2 className="small font-bold">Olá, {user?.name}</h2>
+        <h2>Olá, {user?.name}</h2>
       </div>
 
       <div className="px-5 py-6">
-        <Button variant="ghost" onClick={logout}>
+        <Button variant="ghost" onClick={() => setLogoutDialogIsOpen(true)}>
           <LogoutIcon />
           Sair
         </Button>
       </div>
+
+      <ConfirmDialog
+        isOpen={logoutDialogIsOpen}
+        onClose={() => setLogoutDialogIsOpen(false)}
+        onConfirm={logout}
+        title="Sair"
+        description="Tem certeza que deseja sair da sua conta?"
+      />
     </div>
   );
 };
