@@ -1,26 +1,25 @@
 import { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { LogoutIcon } from "../assets/icons";
-import Button from "./Button";
-import ConfirmDialog from "./ConfirmDialog";
+import { Button, ConfirmDialog } from "../components/";
 
 const Sidebar = () => {
   const { user, logout } = useAuth();
   const [logoutDialogIsOpen, setLogoutDialogIsOpen] = useState(false);
 
   return (
-    <div className="h-screen w-72 bg-white flex flex-col justify-between">
+    <div className="h-screen w-72 bg-brand-light-green/10 flex flex-col justify-between">
       <div className="space-y-4 px-8 py-6">
-        <h1 className="text-xl font-semibold text-[#00adb5]">Task Manager</h1>
-        <p>
+        <h1 className="text-xl font-semibold text-brand-primary">TaskFlow</h1>
+        <p className="dark">
           Um simples{" "}
-          <span className="text-[#00adb5]">organizador de tarefas</span>.
+          <span className="text-brand-primary">organizador de tarefas</span>.
         </p>
-        <h2>Olá, {user?.name}</h2>
+        <h2 className="font-bold">Olá, {user?.name}</h2>
       </div>
 
-      <div className="px-5 py-6">
-        <Button variant="ghost" onClick={() => setLogoutDialogIsOpen(true)}>
+      <div className="px-5 py-6 flex items-start flex-col gap-2">
+        <Button variant="logout" onClick={() => setLogoutDialogIsOpen(true)}>
           <LogoutIcon />
           Sair
         </Button>
