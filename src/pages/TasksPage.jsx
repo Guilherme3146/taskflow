@@ -21,14 +21,16 @@ const TasksPage = () => {
       </div>
       <div className="flex-1 overflow-y-auto">
         <div className="flex items-center justify-between px-6 py-4 bg-white md:hidden">
-          <h1 className="text-lg font-semibold text-[#00adb5]">Task Manager</h1>
+          <h1 className="text-lg font-semibold text-brand-primary">
+            Task Manager
+          </h1>
           <button
             onClick={() => setSidebarIsOpen(true)}
             className="flex flex-col gap-1.5 cursor-pointer"
           >
-            <span className="w-6 h-0.5 bg-[#35383E]" />
-            <span className="w-6 h-0.5 bg-[#35383E]" />
-            <span className="w-6 h-0.5 bg-[#35383E]" />
+            <span className="w-6 h-0.5 bg-brand-dark-green" />
+            <span className="w-6 h-0.5 bg-brand-dark-green" />
+            <span className="w-6 h-0.5 bg-brand-dark-green" />
           </button>
         </div>
 
