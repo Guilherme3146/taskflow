@@ -4,8 +4,6 @@
 
 @import "tailwindcss";
 
-@variant dark (&:where(.dark, .dark *));
-
 @theme {
   --font-sans: "Inter", sans-serif;
   --font-title: "Space Grotesk", sans-serif;

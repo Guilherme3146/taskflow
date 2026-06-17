@@ -11,7 +11,7 @@ const TaskFilters = ({ filter, onFilterChange }) => {
         <button
           key={f.value}
           onClick={() => onFilterChange(f.value)}
-          className={`px-4 py-1.5 rounded-full text-sm font-medium cursor-pointer transition-colors
+          className={`px-4 py-1.5 rounded-md text-sm font-medium cursor-pointer transition-colors
             ${
               filter === f.value
                 ? "bg-brand-primary text-white"
