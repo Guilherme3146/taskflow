@@ -6,6 +6,10 @@ O projeto foi desenvolvido como solução para um desafio técnico e simula uma 
 
 ---
 
+## Vercel 
+
+https://taskflow-blue-beta.vercel.app/
+
 ## 🚀 Funcionalidades Implementadas
 
 ### 🔐 Autenticação
