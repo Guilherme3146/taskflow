@@ -35,14 +35,14 @@ const TaskItem = ({
       className={`flex items-center justify-between gap-2 rounded-lg px-4 py-3 text-sm transition-all duration-300
   ${
     isConcluida
-      ? "bg-[#00adb5]/10 text-[#00adb5]"
-      : "bg-[#35383E]/10 text-[#35383E]"
+      ? "bg-brand-primary/10 text-brand-primary"
+      : "bg-brand-dark-green/10 text-brand-dark-green"
   }`}
     >
       <div className="flex items-center gap-3 flex-1 min-w-0">
         <label
           className={`relative shrink-0 flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg transition-colors
-      ${isConcluida ? "bg-[#00adb5]/20" : "bg-[#35383E]/20"}`}
+      ${isConcluida ? "bg-brand-primary/20" : "bg-brand-dark-green/20"}`}
         >
           <input
             type="checkbox"
@@ -69,13 +69,13 @@ const TaskItem = ({
 
       <div className="flex shrink-0">
         <Button variant="ghost" onClick={() => handleEditClick(task)}>
-          <PencilIcon className="text-[#9a9c9f] transition" />
+          <PencilIcon className="text-brand-text-gray transition" />
         </Button>
         <Button variant="ghost" onClick={() => handleDeleteClick(task)}>
-          <TrashIcon className="text-[#9a9c9f] transition" />
+          <TrashIcon className="text-brand-text-gray transition" />
         </Button>
         <Button variant="ghost" onClick={() => handleViewClick(task)}>
-          <DetailsIcon className="text-[#9a9c9f] transition" />
+          <DetailsIcon className="text-brand-text-gray transition" />
         </Button>
       </div>
     </div>

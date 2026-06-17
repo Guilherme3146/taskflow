@@ -2,6 +2,8 @@ import { useState } from "react";
 import { AddIcon } from "../assets/icons";
 import { useTasks } from "../hooks/useTasks";
 
+import { motion } from "framer-motion";
+
 import {
   TaskDialog,
   ConfirmDialog,
@@ -43,7 +45,7 @@ const Tasks = () => {
     <div className="w-full space-y-6 px-8 py-16">
       <div className="flex w-full justify-between">
         <div>
-          <span className="text-xs font-semibold text-[#00adb5]">
+          <span className="text-xs font-semibold text-brand-primary">
             Minhas Tarefas
           </span>
           <h2 className="text-xl font-semibold">Minhas Tarefas</h2>
@@ -59,21 +61,28 @@ const Tasks = () => {
 
       <TaskFilters filter={filter} onFilterChange={setFilter} />
 
-      <div className="rounded-xl bg-white p-6 space-y-3">
+      <div className="rounded-xl space-y-3">
         {filteredTasks.length === 0 ? (
           <p className="text-center py-8 text-gray-400 text-sm">
             Nenhuma tarefa {filter !== "todas" ? filter : "cadastrada"}
           </p>
         ) : (
           filteredTasks.map((task) => (
-            <TaskItem
+            <motion.div
               key={task.id}
-              task={task}
-              handleCheckboxClick={toggleTask}
-              handleDeleteClick={setTaskToDelete}
-              handleEditClick={handleEditClick}
-              handleViewClick={setTaskToView}
-            />
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <TaskItem
+                key={task.id}
+                task={task}
+                handleCheckboxClick={toggleTask}
+                handleDeleteClick={setTaskToDelete}
+                handleEditClick={handleEditClick}
+                handleViewClick={setTaskToView}
+              />
+            </motion.div>
           ))
         )}
       </div>
