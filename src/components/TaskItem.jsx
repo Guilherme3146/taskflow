@@ -68,13 +68,25 @@ const TaskItem = ({
       </div>
 
       <div className="flex shrink-0">
-        <Button variant="ghost" onClick={() => handleEditClick(task)}>
+        <Button
+          aria-label="Editar Tarefa"
+          variant="ghost"
+          onClick={() => handleEditClick(task)}
+        >
           <PencilIcon className="text-brand-text-gray transition" />
         </Button>
-        <Button variant="ghost" onClick={() => handleDeleteClick(task)}>
+        <Button
+          aria-label="Deletar Tarefa"
+          variant="ghost"
+          onClick={() => handleDeleteClick(task)}
+        >
           <TrashIcon className="text-brand-text-gray transition" />
         </Button>
-        <Button variant="ghost" onClick={() => handleViewClick(task)}>
+        <Button
+          aria-label="Ver Detalhes"
+          variant="ghost"
+          onClick={() => handleViewClick(task)}
+        >
           <DetailsIcon className="text-brand-text-gray transition" />
         </Button>
       </div>

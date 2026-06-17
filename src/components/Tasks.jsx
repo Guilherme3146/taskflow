@@ -52,7 +52,12 @@ const Tasks = () => {
         </div>
 
         <div className="flex items-center gap-3">
-          <Button onClick={() => setAddDialogIsOpen(true)}>
+          <Button
+            variant="primary"
+            size="large"
+            aria-label="Nova Tarefa"
+            onClick={() => setAddDialogIsOpen(true)}
+          >
             Nova Tarefa
             <AddIcon />
           </Button>

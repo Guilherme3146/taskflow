@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import { toast } from "sonner";
 import { taskService } from "../services/taskService";
-import { MOCK_TASKS } from "../lib/mocks";
+import { MOCK_TASKS } from "../data/mock-tasks";
 
 const loadTasksFromStorage = () => {
   const saved = localStorage.getItem("tasks");

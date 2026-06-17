@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AuthContext } from "./AuthContext";
-import { MOCK_USER } from "../lib/mocks";
+import { MOCK_USER } from "../data/mock-user";
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {

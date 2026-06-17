@@ -1,4 +1,4 @@
-import { MOCK_TASKS } from "../lib/mocks";
+import { MOCK_TASKS } from "../data/mock-tasks";
 
 const STORAGE_KEY = "tasks";
 

@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { taskSchema } from "../lib/schemas";
 import Button from "./Button";
-import Input from "./input";
+import Input from "./Input";
 
 import { AnimatePresence, motion } from "framer-motion";
 
