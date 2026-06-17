@@ -13,7 +13,7 @@ const ConfirmDialog = ({ isOpen, onClose, onConfirm, title, description }) => {
           exit={{ opacity: 0 }}
         >
           <motion.div
-            className="w-96 rounded-xl bg-white p-6 shadow-lg"
+            className="w-96 rounded-xl bg-card p-6 shadow-lg"
             initial={{
               opacity: 0,
               scale: 0.95,

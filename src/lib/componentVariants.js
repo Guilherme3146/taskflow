@@ -5,8 +5,8 @@ export const button = tv({
   variants: {
     variant: {
       primary: "bg-brand-primary text-white",
-      ghost: "bg-transparent text-brand-dark-gray",
-      secondary: "bg-brand-light-gray text-brand-dark-green",
+      ghost: "bg-transparent text-muted",
+      secondary: "bg-surface text-primary",
       danger: "bg-brand-danger text-white",
       logout: "bg-transparent text-brand-danger",
     },
@@ -22,11 +22,11 @@ export const button = tv({
 });
 
 export const input = tv({
-  base: "w-full border rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 transition",
+  base: "w-full rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 transition bg-input text-primary placeholder:text-muted",
   variants: {
     state: {
-      default: "border-gray-300 focus:ring-brand-primary",
-      error: "border-brand-danger focus:ring-brand-danger",
+      default: "focus:ring-brand-primary",
+      error: "focus:ring-brand-danger",
     },
   },
   defaultVariants: {

@@ -33,16 +33,16 @@ const TaskItem = ({
   return (
     <div
       className={`flex items-center justify-between gap-2 rounded-lg px-4 py-3 text-sm transition-all duration-300
-  ${
-    isConcluida
-      ? "bg-brand-primary/10 text-brand-primary"
-      : "bg-brand-dark-green/10 text-brand-dark-green"
-  }`}
+        ${
+          isConcluida
+            ? "bg-brand-primary/10 text-brand-primary"
+            : "bg-card text-primary"
+        }`}
     >
       <div className="flex items-center gap-3 flex-1 min-w-0">
         <label
           className={`relative shrink-0 flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg transition-colors
-      ${isConcluida ? "bg-brand-primary/20" : "bg-brand-dark-green/20"}`}
+            ${isConcluida ? "bg-brand-primary/20" : "bg-input"}`}
         >
           <input
             type="checkbox"
@@ -55,12 +55,16 @@ const TaskItem = ({
 
         <div className="flex flex-col min-w-0">
           <span
-            className={`truncate ${isConcluida ? "line-through opacity-60" : ""}`}
+            className={`truncate ${
+              isConcluida
+                ? "line-through text-brand-primary opacity-60"
+                : "text-primary"
+            }`}
           >
             {task.title}
           </span>
           {task.due_date && (
-            <span className="text-xs opacity-50 truncate">
+            <span className="text-xs text-muted truncate">
               {formatDate(task.due_date)}
             </span>
           )}
@@ -73,21 +77,21 @@ const TaskItem = ({
           variant="ghost"
           onClick={() => handleEditClick(task)}
         >
-          <PencilIcon className="text-brand-text-gray transition" />
+          <PencilIcon className="text-muted hover:text-primary transition" />
         </Button>
         <Button
           aria-label="Deletar Tarefa"
           variant="ghost"
           onClick={() => handleDeleteClick(task)}
         >
-          <TrashIcon className="text-brand-text-gray transition" />
+          <TrashIcon className="text-muted hover:text-brand-danger transition" />
         </Button>
         <Button
           aria-label="Ver Detalhes"
           variant="ghost"
           onClick={() => handleViewClick(task)}
         >
-          <DetailsIcon className="text-brand-text-gray transition" />
+          <DetailsIcon className="text-muted hover:text-primary transition" />
         </Button>
       </div>
     </div>

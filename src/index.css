@@ -1,34 +1,57 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
-
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
 
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --font-sans: "Inter", sans-serif;
   --font-title: "Space Grotesk", sans-serif;
 
   --color-brand-primary: #00adb5;
-  --color-brand-dark-green: #35383e;
-  --color-brand-light-green: #bcc9c6;
-  --color-brand-dark-gray: #818181;
-  --color-brand-text-gray: #9a9c9f;
-  --color-brand-light-gray: #eeeeee;
-  --color-brand-background: #f8f8f8;
-  --color-brand-border: #f4f4f5;
   --color-brand-danger: #ef4444;
+
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-input: var(--input);
+
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-muted: var(--muted);
 }
 
-body {
-  font-family: var(--font-sans);
-  background-color: var(--color-brand-background);
-}
+@layer base {
+  :root {
+    --surface: #ededed;
+    --card: #fafafa;
+    --input: #e2e2e2;
+    --primary: #35383e;
+    --secondary: #818181;
+    --muted: #9a9c9f;
+  }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-title);
+  .dark {
+    --surface: #1a1d23;
+    --card: #22262e;
+    --input: #2a2f38;
+    --primary: #f0f0f0;
+    --secondary: #bcc9c6;
+    --muted: #818181;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--surface);
+    color: var(--primary);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-title);
+  }
 }

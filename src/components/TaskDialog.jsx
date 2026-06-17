@@ -5,7 +5,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { taskSchema } from "../lib/schemas";
 import Button from "./Button";
 import Input from "./Input";
-
 import { AnimatePresence, motion } from "framer-motion";
 
 const TaskDialog = ({ isOpen, onClose, onSubmit, task }) => {
@@ -44,39 +43,27 @@ const TaskDialog = ({ isOpen, onClose, onSubmit, task }) => {
     onClose();
   };
 
-  if (!isOpen) return null;
-
   return createPortal(
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 flex items-center justify-center backdrop-blur bg-black/20 z-50">
+        <motion.div
+          className="fixed inset-0 flex items-center justify-center backdrop-blur bg-black/20 z-50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
           <motion.div
-            initial={{
-              opacity: 0,
-              scale: 0.95,
-              y: 20,
-            }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-              y: 0,
-            }}
-            exit={{
-              opacity: 0,
-              scale: 0.95,
-              y: 20,
-            }}
-            transition={{
-              duration: 0.2,
-              ease: "easeOut",
-            }}
-            className="w-96 rounded-xl bg-white p-6 shadow-lg"
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="w-96 rounded-xl bg-card p-6 shadow-lg"
           >
-            <h2 className="text-xl font-semibold text-brand-dark-green">
+            <h2 className="text-xl font-semibold text-primary">
               {isEditing ? "Editar Tarefa" : "Nova Tarefa"}
             </h2>
 
-            <p className="mt-1 mb-4 text-sm text-brand-text-gray">
+            <p className="mt-1 mb-4 text-sm text-muted">
               Insira as informações abaixo
             </p>
 
@@ -127,7 +114,7 @@ const TaskDialog = ({ isOpen, onClose, onSubmit, task }) => {
               </div>
             </form>
           </motion.div>
-        </div>
+        </motion.div>
       )}
     </AnimatePresence>,
     document.body,

@@ -16,7 +16,15 @@ const ProtectedRoute = ({ children }) => {
 const App = () => {
   return (
     <AuthProvider>
-      <Toaster toastOptions={{ style: { color: "#35383e" } }} />
+      <Toaster
+        toastOptions={{
+          style: {
+            background: "var(--bg-card)",
+            color: "var(--text-primary)",
+            border: "1px solid var(--border)",
+          },
+        }}
+      />
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<LoginPage />} />

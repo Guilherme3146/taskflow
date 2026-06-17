@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { AddIcon } from "../assets/icons";
 import { useTasks } from "../hooks/useTasks";
-
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 import {
   TaskDialog,
@@ -12,6 +11,12 @@ import {
   TaskFilters,
   TaskItem,
 } from "../components/";
+
+const taskVariants = {
+  hidden: { opacity: 0, y: 16, scale: 0.98 },
+  visible: { opacity: 1, y: 0, scale: 1 },
+  exit: { opacity: 0, x: -20, scale: 0.97 },
+};
 
 const Tasks = () => {
   const {
@@ -29,17 +34,9 @@ const Tasks = () => {
   const [taskToDelete, setTaskToDelete] = useState(null);
   const [taskToView, setTaskToView] = useState(null);
 
-  const handleEditClick = (task) => {
-    setTaskToEdit(task);
-  };
-
-  const handleEditClose = () => {
-    setTaskToEdit(null);
-  };
-
-  const handleEditSubmit = async (data) => {
-    await editTask(taskToEdit.id, data);
-  };
+  const handleEditClick = (task) => setTaskToEdit(task);
+  const handleEditClose = () => setTaskToEdit(null);
+  const handleEditSubmit = async (data) => await editTask(taskToEdit.id, data);
 
   return (
     <div className="w-full space-y-6 px-8 py-16">
@@ -48,7 +45,7 @@ const Tasks = () => {
           <span className="text-xs font-semibold text-brand-primary">
             Minhas Tarefas
           </span>
-          <h2 className="text-xl font-semibold">Minhas Tarefas</h2>
+          <h2 className="text-xl font-semibold text-primary">Minhas Tarefas</h2>
         </div>
 
         <div className="flex items-center gap-3">
@@ -67,29 +64,40 @@ const Tasks = () => {
       <TaskFilters filter={filter} onFilterChange={setFilter} />
 
       <div className="rounded-xl space-y-3">
-        {filteredTasks.length === 0 ? (
-          <p className="text-center py-8 text-gray-400 text-sm">
-            Nenhuma tarefa {filter !== "todas" ? filter : "cadastrada"}
-          </p>
-        ) : (
-          filteredTasks.map((task) => (
-            <motion.div
-              key={task.id}
-              initial={{ opacity: 0, y: 20 }}
+        <AnimatePresence mode="popLayout">
+          {filteredTasks.length === 0 ? (
+            <motion.p
+              key="empty"
+              initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2 }}
+              className="text-center py-8 text-muted text-sm"
             >
-              <TaskItem
+              Nenhuma tarefa {filter !== "todas" ? filter : "cadastrada"}
+            </motion.p>
+          ) : (
+            filteredTasks.map((task) => (
+              <motion.div
                 key={task.id}
-                task={task}
-                handleCheckboxClick={toggleTask}
-                handleDeleteClick={setTaskToDelete}
-                handleEditClick={handleEditClick}
-                handleViewClick={setTaskToView}
-              />
-            </motion.div>
-          ))
-        )}
+                variants={taskVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                transition={{ duration: 0.25, ease: "easeOut" }}
+                layout
+              >
+                <TaskItem
+                  task={task}
+                  handleCheckboxClick={toggleTask}
+                  handleDeleteClick={setTaskToDelete}
+                  handleEditClick={handleEditClick}
+                  handleViewClick={setTaskToView}
+                />
+              </motion.div>
+            ))
+          )}
+        </AnimatePresence>
       </div>
 
       <TaskDialog

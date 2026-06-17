@@ -15,7 +15,7 @@ const TaskFilters = ({ filter, onFilterChange }) => {
             ${
               filter === f.value
                 ? "bg-brand-primary text-white"
-                : "bg-white text-gray-500 hover:bg-gray-100"
+                : "bg-card text-primary hover:bg-surface hover:text-primary"
             }`}
         >
           {f.label}

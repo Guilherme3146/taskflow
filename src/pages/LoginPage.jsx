@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"; // ← adiciona esse import
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "../lib/schemas";
@@ -30,12 +30,12 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-brand-light-green/20">
-      <div className="w-full max-w-md bg-white rounded-xl p-8 shadow-xl">
-        <h1 className="text-2xl font-bold text-gray-800 mb-2 text-center">
+    <div className="min-h-screen flex items-center justify-center bg-surface">
+      <div className="w-full max-w-md bg-card rounded-xl p-8 shadow-xl">
+        <h1 className="text-2xl font-bold text-primary mb-2 text-center">
           TaskFlow
         </h1>
-        <p className="pb-5 text-sm font-light text-brand-text-gray text-center">
+        <p className="pb-5 text-sm font-light text-muted text-center">
           Gestão técnica e eficiente para times de alta performance.
         </p>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
