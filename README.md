@@ -6,6 +6,10 @@ O projeto foi desenvolvido como solução para um desafio técnico e simula uma 
 
 ---
 
+## Vercel 
+
+https://taskflow-blue-beta.vercel.app/
+
 ## 🚀 Funcionalidades Implementadas
 
 ### 🔐 Autenticação
@@ -129,7 +133,6 @@ Responsáveis pela lógica compartilhada da aplicação.
 | ------------ | ---------------------------------- |
 | useAuth      | Acesso ao contexto de autenticação |
 | useTasks     | Gerenciamento das tarefas          |
-| useTheme     | Controle de tema                   |
 | AuthContext  | Contexto global de autenticação    |
 | AuthProvider | Provedor de autenticação           |
 
