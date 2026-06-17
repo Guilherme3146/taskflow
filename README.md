@@ -133,7 +133,6 @@ Responsáveis pela lógica compartilhada da aplicação.
 | ------------ | ---------------------------------- |
 | useAuth      | Acesso ao contexto de autenticação |
 | useTasks     | Gerenciamento das tarefas          |
-| useTheme     | Controle de tema                   |
 | AuthContext  | Contexto global de autenticação    |
 | AuthProvider | Provedor de autenticação           |
 
