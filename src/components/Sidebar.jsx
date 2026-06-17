@@ -8,7 +8,7 @@ const Sidebar = () => {
   const [logoutDialogIsOpen, setLogoutDialogIsOpen] = useState(false);
 
   return (
-    <div className="h-screen w-72 bg-brand-light-green/10 flex flex-col justify-between">
+    <div className="h-screen w-72 bg-white flex flex-col justify-between">
       <div className="space-y-4 px-8 py-6">
         <h1 className="text-xl font-semibold text-brand-primary">TaskFlow</h1>
         <p className="dark">
