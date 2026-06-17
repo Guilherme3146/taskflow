@@ -30,12 +30,14 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="w-full max-w-md bg-white rounded-xl p-8 shadow-lg">
-        <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-          Entrar
+    <div className="min-h-screen flex items-center justify-center bg-brand-light-green/20">
+      <div className="w-full max-w-md bg-white rounded-xl p-8 shadow-xl">
+        <h1 className="text-2xl font-bold text-gray-800 mb-2 text-center">
+          TaskFlow
         </h1>
-
+        <p className="pb-5 text-sm font-light text-brand-text-gray text-center">
+          Gestão técnica e eficiente para times de alta performance.
+        </p>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           <Input
             type="email"

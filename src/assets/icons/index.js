@@ -5,6 +5,8 @@ import TasksIcon from "./tasks.svg?react";
 import TrashIcon from "./trash.svg?react";
 import ChevronDownIcon from "./chevron-down.svg?react";
 import LogoutIcon from "./logout.svg?react";
+import MoonIcon from "./moon.svg?react";
+import SunIcon from "./sun.svg?react";
 import DetailsIcon from "./details.svg?react";
 import PencilIcon from "./pencil.svg?react";
 
@@ -18,4 +20,6 @@ export {
   DetailsIcon,
   LogoutIcon,
   PencilIcon,
+  MoonIcon,
+  SunIcon,
 };
