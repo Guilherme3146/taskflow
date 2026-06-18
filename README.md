@@ -6,60 +6,69 @@ O projeto foi desenvolvido como solução para um desafio técnico e simula uma 
 
 ---
 
-## Vercel 
+## 🌐 Deploy
 
 https://taskflow-blue-beta.vercel.app/
+
+---
 
 ## 🚀 Funcionalidades Implementadas
 
 ### 🔐 Autenticação
 
-* Login com e-mail e senha
-* Validação de campos obrigatórios
-* Validação de formato de e-mail
-* Exibição de mensagens de erro abaixo dos campos inválidos
-* Estado de carregamento durante autenticação
-* Controle de sessão através de Context API
+- Login com e-mail e senha
+- Validação de campos obrigatórios
+- Validação de formato de e-mail
+- Exibição de mensagens de erro abaixo dos campos inválidos
+- Estado de carregamento durante autenticação (spinner animado)
+- Controle de sessão através de Context API
 
 ### 📝 Gerenciamento de Tarefas
 
 #### Listagem
 
-* Exibição das tarefas do usuário autenticado
-* Atualização dinâmica sem recarregamento da página
-* Estado vazio para filtros sem resultados
+- Exibição das tarefas do usuário autenticado
+- Ordenação automática por data de vencimento
+- Atualização dinâmica sem recarregamento da página
+- Estado vazio para filtros sem resultados
 
 #### Filtros
 
-* Todas
-* Pendentes
-* Concluídas
+- Todas
+- Pendentes
+- Concluídas
 
 #### Operações
 
-* Criar tarefa
-* Editar tarefa
-* Excluir tarefa
-* Visualizar detalhes da tarefa
-* Marcar tarefa como concluída diretamente na listagem
-* Confirmação antes da exclusão
+- Criar tarefa
+- Editar tarefa
+- Excluir tarefa
+- Visualizar detalhes da tarefa
+- Marcar tarefa como concluída diretamente na listagem
+- Confirmação antes da exclusão
 
 ### 🎨 Experiência do Usuário
 
-* Layout totalmente responsivo
-* Feedback visual para ações importantes
-* Interface otimizada para desktop e dispositivos móveis
-* Atualização instantânea dos dados sem reload
+- Layout totalmente responsivo (Mobile First)
+- Dark mode e Light mode com persistência via localStorage
+- Feedback visual via toast para criação, edição e exclusão de tarefas
+- Animações de entrada e saída dos itens da lista com Framer Motion
+- Animações nos modais (abertura e fechamento suaves)
+- Interface otimizada para desktop e dispositivos móveis
+- Menu lateral recolhível em mobile (hamburguer)
 
 ---
 
 ## ⭐ Diferenciais Implementados
 
-* Ordenação de tarefas por data de vencimento
-* Componentização reutilizável
-* Arquitetura baseada em hooks customizados
-* Camada de serviços simulando integração com API REST
-* Gerenciamento global de autenticação com Context API
+- Ordenação de tarefas por data de vencimento (padrão)
+- Dark mode funcional com toggle na sidebar e persistência
+- Animações com Framer Motion (lista, modais e transições)
+- Acessibilidade básica: `aria-label` em ícones e botões, navegação semântica
+- Componentização reutilizável
+- Arquitetura baseada em hooks customizados
+- Camada de serviços simulando integração com API REST
+- Gerenciamento global de autenticação e tema com Context API
 
 ---
 
@@ -69,6 +78,7 @@ https://taskflow-blue-beta.vercel.app/
 src/
 │
 ├── components/
+│   ├── Button.jsx
 │   ├── ConfirmDialog.jsx
 │   ├── Input.jsx
 │   ├── Sidebar.jsx
@@ -78,6 +88,9 @@ src/
 │   ├── Tasks.jsx
 │   └── TaskFilters.jsx
 │
+├── contexts/
+│   └── ThemeContext.jsx
+│
 ├── data/
 │   ├── mock-tasks.js
 │   └── mock-users.js
@@ -86,7 +99,8 @@ src/
 │   ├── AuthContext.js
 │   ├── AuthProvider.jsx
 │   ├── useAuth.js
-│   └── useTasks.js
+│   ├── useTasks.js
+│   └── useTheme.js
 │
 ├── lib/
 │   ├── componentVariants.js
@@ -112,27 +126,35 @@ src/
 
 Responsáveis pelos componentes reutilizáveis da interface.
 
-| Componente       | Responsabilidade                 |
-| ---------------- | -------------------------------- |
-| Input            | Campo de formulário reutilizável |
-| Sidebar          | Navegação lateral                |
-| TaskItem         | Exibição individual da tarefa    |
-| Tasks            | Listagem de tarefas              |
-| TaskFilters      | Filtros por status               |
-| TaskDialog       | Criação e edição                 |
-| TaskDetailDialog | Visualização detalhada           |
-| ConfirmDialog    | Confirmação de exclusão          |
+| Componente       | Responsabilidade                     |
+| ---------------- | ------------------------------------ |
+| Button           | Botão reutilizável com variantes     |
+| Input            | Campo de formulário reutilizável     |
+| Sidebar          | Navegação lateral com toggle de tema |
+| TaskItem         | Exibição individual da tarefa        |
+| Tasks            | Listagem de tarefas com animações    |
+| TaskFilters      | Filtros por status                   |
+| TaskDialog       | Criação e edição em modal animado    |
+| TaskDetailDialog | Visualização detalhada               |
+| ConfirmDialog    | Confirmação de exclusão              |
+
+---
+
+### Contexts
+
+| Contexto     | Responsabilidade                        |
+| ------------ | --------------------------------------- |
+| ThemeContext | Gerenciamento global de dark/light mode |
 
 ---
 
 ### Hooks
 
-Responsáveis pela lógica compartilhada da aplicação.
-
 | Hook         | Responsabilidade                   |
 | ------------ | ---------------------------------- |
 | useAuth      | Acesso ao contexto de autenticação |
 | useTasks     | Gerenciamento das tarefas          |
+| useTheme     | Acesso ao contexto de tema         |
 | AuthContext  | Contexto global de autenticação    |
 | AuthProvider | Provedor de autenticação           |
 
@@ -144,15 +166,10 @@ Camada responsável por abstrair o acesso aos dados.
 
 Atualmente utiliza dados mockados para simular uma API REST, permitindo uma futura substituição por um backend real sem necessidade de grandes alterações na interface.
 
-Exemplos de operações simuladas:
-
 ```javascript
 await taskService.getTasks();
-
 await taskService.createTask(task);
-
 await taskService.updateTask(id, data);
-
 await taskService.deleteTask(id);
 ```
 
@@ -186,14 +203,17 @@ Senha: password
 
 ## 🛠️ Tecnologias Utilizadas
 
-* React
-* JavaScript (ES6+)
-* Context API
-* React Hooks
-* Vite
-* CSS3
-* Dados Mockados
-* Arquitetura baseada em Services
+- React 18
+- JavaScript (ES6+)
+- Vite
+- Tailwind CSS v4
+- Framer Motion
+- React Hook Form + Zod
+- Tailwind Variants
+- Sonner (toasts)
+- Context API
+- React Router DOM
+- Dados Mockados
 
 ---
 
@@ -201,10 +221,8 @@ Senha: password
 
 ### Pré-requisitos
 
-* Node.js 18 ou superior
-* npm ou yarn
-
----
+- Node.js 18 ou superior
+- npm ou yarn
 
 ### Clonar o repositório
 
@@ -212,23 +230,17 @@ Senha: password
 git clone https://github.com/Guilherme3146/taskflow.git
 ```
 
----
-
 ### Acessar a pasta do projeto
 
 ```bash
 cd taskflow
 ```
 
----
-
 ### Instalar dependências
 
 ```bash
 npm install
 ```
-
----
 
 ### Executar o projeto
 
@@ -257,25 +269,22 @@ Senha: password
 
 Este projeto não utiliza backend real.
 
-Para fins de desenvolvimento e demonstração, foi implementada uma camada de serviços (`taskService`) que consome dados mockados e simula requisições assíncronas utilizando Promises.
+Foi implementada uma camada de serviços (`taskService`) que consome dados mockados e simula requisições assíncronas utilizando Promises, permitindo:
 
-Essa abordagem permite:
-
-* Desenvolvimento desacoplado do backend
-* Facilidade de manutenção
-* Possibilidade de migração futura para API REST real
-* Melhor organização da lógica de negócio
+- Desenvolvimento desacoplado do backend
+- Facilidade de manutenção
+- Possibilidade de migração futura para API REST real sem grandes alterações na interface
 
 ---
 
 ## 📱 Responsividade
 
-A aplicação foi desenvolvida seguindo a abordagem Mobile First e adaptada para:
+Desenvolvido seguindo a abordagem Mobile First e adaptado para:
 
-* Smartphones
-* Tablets
-* Notebooks
-* Monitores Desktop
+- Smartphones (sidebar recolhível com menu hamburguer)
+- Tablets
+- Notebooks
+- Monitores Desktop
 
 ---
 
@@ -283,41 +292,42 @@ A aplicação foi desenvolvida seguindo a abordagem Mobile First e adaptada para
 
 ### Autenticação
 
-* [x] Login
-* [x] Validação de e-mail
-* [x] Validação de campos obrigatórios
-* [x] Mensagens de erro
-* [x] Estado de carregamento
+- [x] Login
+- [x] Validação de e-mail
+- [x] Validação de campos obrigatórios
+- [x] Mensagens de erro
+- [x] Estado de carregamento
 
 ### Tarefas
 
-* [x] Listagem de tarefas
-* [x] Filtro por status
-* [x] Criar tarefa
-* [x] Editar tarefa
-* [x] Excluir tarefa
-* [x] Confirmar exclusão
-* [x] Marcar como concluída
-* [x] Estado vazio
+- [x] Listagem de tarefas
+- [x] Filtro por status
+- [x] Criar tarefa
+- [x] Editar tarefa
+- [x] Excluir tarefa
+- [x] Confirmar exclusão
+- [x] Marcar como concluída
+- [x] Estado vazio
 
 ### Interface
 
-* [x] Responsividade
-* [x] Feedback visual
-* [x] Componentização
-* [x] Atualização sem reload
+- [x] Responsividade
+- [x] Feedback visual (toasts)
+- [x] Componentização
+- [x] Atualização sem reload
 
 ### Diferenciais
 
-* [x] Ordenação por data
-* [x] Arquitetura baseada em Services
-* [x] Hooks customizados
-* [x] Context API
+- [x] Ordenação por data de vencimento
+- [x] Dark mode funcional com persistência
+- [x] Animações com Framer Motion
+- [x] Acessibilidade básica (aria-label, semântica)
+- [x] Arquitetura baseada em Services
+- [x] Hooks customizados
+- [x] Context API
 
 ---
 
 ## 👨‍💻 Autor
 
-Desenvolvido por **Guilherme Almeida** como solução para o desafio técnico proposto.
-
-Projeto construído seguindo princípios de componentização, reutilização de código e preparação para integração futura com APIs REST reais.
+Desenvolvido por **Guilherme Almeida de Melo** como solução para o desafio técnico proposto.
